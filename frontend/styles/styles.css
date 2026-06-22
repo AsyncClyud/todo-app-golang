@@ -1,0 +1,12 @@
+body {
+    background: grey;
+}
+
+.task {
+    height: 100px;
+    width: 200px;
+    padding: 5px;
+    border: 20px;
+    margin: 10px;
+    background: gainsboro;
+}
