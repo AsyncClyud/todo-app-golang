@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo-List</title>
+    <meta name="description" content="ToDo-List">
     <script src="scripts/requests/requests.js"></script>
-    <script src="scripts/buttons/buttons.js"></script>
+    <script src="scripts/postform/showform.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <head>ToDo-List</head>
+    <head>
+        <div class="header">
+            <h1>Todo-List</h1>
+        </div>
+    </head>
 
     <main>
-        <div id="main"></div>
+        <div class="main" id="main"></div>
+        <div class="requests">
         <button onclick="Get_Tasks()">Get</button>
-        <button onclick="ShowPostForm()">Add</button>
+        <button onclick="ShowPostForm()">Add</button></div>
         <p id="response"></p>
     </main>
 
-    <footer>All copyright reversed.</footer>
+    <footer class="footer">
+        All copyright reversed.
+    </footer>
 </body>
 </html>

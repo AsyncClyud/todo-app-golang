@@ -1,12 +1,63 @@
 body {
-    background: grey;
+    background: rgb(78, 77, 77);
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.header {
+    height: 40px;
+    width: auto;
+    text-align: center;
+    padding: 10px;
+    background: rgb(31, 36, 41);
+    color: aliceblue;
+}
+
+.main {
+    min-height: 650px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: darkgray;
+}
+
+.footer {
+    height: 50px;
+    width: auto;
+    grid-row: 3;
+    background: rgb(31, 36, 41);
+    color: aliceblue;
+}
+
+.sumbit_form {
+    height: 230px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    button {
+       margin: 5px;
+    }
 }
 
 .task {
-    height: 100px;
-    width: 200px;
+    height: fit-content;
+    width: 500px;
     padding: 5px;
-    border: 20px;
+    border: strong 20px;
     margin: 10px;
     background: gainsboro;
+}
+
+.requests {
+    height: 40px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: lightgray;
+    button {
+        margin: 10px;
+    }
 }
