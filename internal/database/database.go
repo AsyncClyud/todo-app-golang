@@ -8,13 +8,18 @@ import (
 )
 
 type Task struct {
+	Id          int
 	Task_Name   string
 	Description string
 }
 
-type GetTask struct {
+type Insert_Task struct {
+	Task_Name   string
+	Description string
+}
+
+type Modify_Task struct {
 	Id int
-	Task
 }
 
 func ConnectDataBase(connStr string) *sql.DB {
@@ -26,9 +31,9 @@ func ConnectDataBase(connStr string) *sql.DB {
 }
 
 func GetTasks(db *sql.DB) string {
-	tasks := []GetTask{}
+	tasks := []Task{}
 
-	rows, err := db.Query("SELECT * FROM Tasks WHERE Id < 11")
+	rows, err := db.Query("SELECT * FROM Tasks")
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +41,7 @@ func GetTasks(db *sql.DB) string {
 	defer rows.Close()
 
 	for rows.Next() {
-		task := GetTask{}
+		task := Task{}
 		err := rows.Scan(
 			&task.Id, &task.Task_Name, &task.Description,
 		)
@@ -50,8 +55,7 @@ func GetTasks(db *sql.DB) string {
 
 }
 
-func AddTasks(task Task, db *sql.DB) sql.Result {
-
+func AddTasks(task Insert_Task, db *sql.DB) sql.Result {
 	response, err := db.Exec("INSERT INTO Tasks(Task_Name, Description) VALUES($1, $2)", task.Task_Name, task.Description)
 	if err != nil {
 		panic(err)
@@ -61,4 +65,26 @@ func AddTasks(task Task, db *sql.DB) sql.Result {
 
 	return response
 
+}
+
+func DeleteTasks(id Modify_Task, db *sql.DB) sql.Result {
+	response, err := db.Exec("DELETE FROM Tasks WHERE Id = $1", id.Id)
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+
+	return response
+}
+
+func UpdateTasks(task Task, db *sql.DB) sql.Result {
+	response, err := db.Exec("UPDATE Tasks SET Task_Name = $1, Description = $2 WHERE Id = $3", task.Task_Name, task.Description, task.Id)
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+
+	return response
 }

@@ -12,11 +12,19 @@ func Router(Frontend_path string) {
 	http.Handle("/", Fs)
 
 	http.HandleFunc("/get_tasks", func(w http.ResponseWriter, r *http.Request) {
-		handler.GetTaskHandler(w, *r)
+		handler.GetTasksHandler(w, *r)
 	})
 
-	http.HandleFunc("/add_tasks", func(w http.ResponseWriter, r *http.Request) {
-		handler.AddTaskHandler(w, *r)
+	http.HandleFunc("/add_task", func(w http.ResponseWriter, r *http.Request) {
+		handler.AddTasksHandler(w, *r)
+	})
+
+	http.HandleFunc("/delete_task", func(w http.ResponseWriter, r *http.Request) {
+		handler.DeleteTasksHandler(w, *r)
+	})
+
+	http.HandleFunc("/update_task", func(w http.ResponseWriter, r *http.Request) {
+		handler.UpdateTasksHandler(w, *r)
 	})
 
 }
